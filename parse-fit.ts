@@ -91,7 +91,7 @@ function parseFIT(path: string) {
     (steps: ICUStep[], rawStep: RawStep) => {
       return stepParseReducer(steps, rawStep, sport as FitSport);
     },
-    [] as ICUStep[]
+    [] as ICUStep[],
   );
 
   const pressLapIndex = steps.findIndex(
@@ -108,15 +108,22 @@ function parseFIT(path: string) {
         return rgx.test(step.text) && rgx2.test(nextStep.text);
       }
       return false;
-    }
+    },
   );
   if (pressLapIndex > -1) {
     toPressLap(steps[pressLapIndex]);
   }
-
+  const sportName = sportMap[sport as FitSport];
+  // solves problem where garmin thinks the pool length is 25m but it is 25y
+  // see https://forum.intervals.icu/t/change-pool-length/4451/12
+  if (sport === "swimming") {
+    steps.unshift({
+      text: "pool length: 25y",
+    });
+  }
   return {
     name: wktName,
-    sport: sportMap[sport as FitSport],
+    sport: sportName,
     text: steps.map((s: ICUStep) => s.text).join("\n"),
   };
 }
