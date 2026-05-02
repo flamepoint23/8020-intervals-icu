@@ -16,6 +16,6 @@
     "tsc": "tsc",
     "scrape": "node scrape.ts",
     "down": "node download-fit-files.ts",
-    "upload": "node upload.ts"
+    "upload": "node --env-file=.env upload.ts"
   }
 }
