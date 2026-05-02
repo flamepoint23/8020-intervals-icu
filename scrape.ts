@@ -22,7 +22,7 @@ async function getWorkoutData(p: any) {
   const tables = await p.$$("table");
   // console.log(tables.length);
   // map to the tbody of each table
-  const tbodies = await Promise.all(tables.map((t) => t.$("tbody")));
+  const tbodies = await Promise.all(tables.map((t: any) => t.$("tbody")));
   // console.log(tbodies.length);
   // flat map to the tr of all the tbody
   let trs: any = await Promise.all(tbodies.map((t) => t?.$$("tr")));
@@ -70,7 +70,7 @@ async function getWorkoutData(p: any) {
       } else {
         throw new Error("Invalid number of tds in tr");
       }
-    })
+    }),
   );
   workouts = workouts.map((w) => ({
     ...w,

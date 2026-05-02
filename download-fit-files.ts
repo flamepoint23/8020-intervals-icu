@@ -1,4 +1,4 @@
-import downloadData from "./8020-workouts.json";
+import downloadData from "./8020-workouts.json" with { type: "json" };
 import fs from "fs";
 import path from "path";
 import axios from "axios";
@@ -13,7 +13,8 @@ import axios from "axios";
 //   "href": "https://www.80
 
 const downloadFiles = async () => {
-  const folderPath = path.join(__dirname, "fit-files");
+  // const folderPath = path.join(__dirname, "fit-files");
+  const folderPath = path.join(import.meta.dirname, "fit-files");
   const folders = [
     folderPath,
     path.join(folderPath, "Run"),
@@ -44,7 +45,9 @@ const downloadFiles = async () => {
     console.log(`Downloading ${fileName} to ${filePath}`);
 
     try {
-      const response = await axios.get(href, { responseType: "arraybuffer" });
+      const response = await axios.get(href as string, {
+        responseType: "arraybuffer",
+      });
       fs.writeFileSync(filePath, response.data);
       console.log(`Downloaded ${fileName}`);
     } catch (error) {

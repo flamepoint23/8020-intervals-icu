@@ -1,4 +1,4 @@
-import intervalsIcu from "./intervals.icu";
+import intervalsIcu from "./intervals.icu.ts";
 
 export const getFolders = async () =>
   (await intervalsIcu({ endpoint: `/folders` }))

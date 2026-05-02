@@ -1,16 +1,21 @@
 {
   "name": "scrape",
-  "module": "index.ts",
   "type": "module",
+  "engines": {
+    "node": ">=24.15.0",
+    "pnpm": ">=10.33.2"
+  },
+  "packageManager": "pnpm@10.33.2",
   "devDependencies": {
-    "@types/bun": "latest"
+    "@garmin/fitsdk": "^21.202.0",
+    "axios": "^1.15.2",
+    "puppeteer": "^22.15.0",
+    "typescript": "^6.0.3"
   },
-  "peerDependencies": {
-    "typescript": "^5.0.0"
-  },
-  "dependencies": {
-    "@garmin/fitsdk": "^21.141.0",
-    "axios": "^1.7.2",
-    "puppeteer": "^22.10.0"
+  "scripts": {
+    "tsc": "tsc",
+    "scrape": "node scrape.ts",
+    "down": "node download-fit-files.ts",
+    "upload": "node upload.ts"
   }
 }

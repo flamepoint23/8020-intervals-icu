@@ -1,4 +1,6 @@
 const { API_KEY, ATHLETE_ID } = process.env;
+console.log("API_KEY", API_KEY);
+console.log("ATHLETE_ID", ATHLETE_ID);
 const API_SERVER = "https://intervals.icu";
 const USER_NAME = "API_KEY";
 

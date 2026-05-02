@@ -1,8 +1,8 @@
 import fs from "fs";
 import path from "path";
-import { makeFolders, getFolders } from "./prepare-folders";
-import parseFIT from "./parse-fit";
-import contact from "./intervals.icu";
+import { makeFolders, getFolders } from "./prepare-folders.ts";
+import parseFIT from "./parse-fit.ts";
+import contact from "./intervals.icu.ts";
 
 const folderMap = {
   Run: "80/20 Runs",
@@ -15,7 +15,7 @@ const idMap = Object.fromEntries(
   Object.entries(folderMap).map(([k, v]) => [
     k,
     folders.find((f: any) => f.name === v).id,
-  ])
+  ]),
 );
 console.log(idMap);
 
